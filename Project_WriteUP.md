@@ -32,10 +32,10 @@ This section should highlight the different strategies you adopted to improve yo
 
 To improve the perfomances, first I improved the data augmentation strategy.
 Below is the results obtained from running `ExploreAugmentations_Negin.ipynb` notebook:
-
 ![data_exploratoryaugmentaion_analysis 0 ](https://user-images.githubusercontent.com/109758200/184712252-e488ea70-effd-44a8-a9d5-d7223e71302a.png)
-
 ![data_exploratoryaugmentaion_analysis 1 ](https://user-images.githubusercontent.com/109758200/184712274-af3eab35-d73a-4481-ae4b-0ce31a6761a7.png)
+![data_exploratoryaugmentaion_analysis 2 ](https://user-images.githubusercontent.com/109758200/184972014-19cbcb91-ffa4-4694-9efa-9a6918e7a410.png)
+![data_exploratoryaugmentaion_analysis 3 ](https://user-images.githubusercontent.com/109758200/184972033-e473d5fc-a3f0-4025-b9a0-95950a00b9a3.png)
 
 Then, to improve the perofmance, I modified config file (i.e., `pipeline.config`) in experiment 1 and experiment 2 folder as shown in the table below:
 
