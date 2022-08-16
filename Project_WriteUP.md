@@ -75,8 +75,11 @@ optimizer {
 Training logs obtained from Tensorboard are shown below which are obtained by running this code:
 ```
  $python experiments/model_main_tf2.py --model_dir=experiments/experiment1/ --pipeline_config_path=experiments/experiment1/pipeline_new.config
+ ````
+ and
+ ``` 
+ python -m tensorboard.main --logdir experiments/experiment1/
 ```
-
 ![improve_perf_ex1_s4_1](https://user-images.githubusercontent.com/109758200/184705983-339a62c9-5545-495c-9360-517a4948ea3c.png)
 
 ![improve_perf_ex1_s4_2](https://user-images.githubusercontent.com/109758200/184705993-f6a22cdb-9e09-4088-9d2f-ead1629609f9.png)
@@ -89,17 +92,26 @@ data_augmentation_options {
     }
 ```
 
-Training logs obtained from Tensorboard are shown below which are obtaned by running this code:
+To train the model, I ran the code below:
 ```$python experiments/model_main_tf2.py --model_dir=experiments/experiment2/ --pipeline_config_path=experiments/experiment2/pipeline_new.config```
 
+Also, training logs obtained from Tensorboard are shown below:
+```
+python -m tensorboard.main --logdir experiments/experiment2/
+```
 ![improve_perf_ex2_s4_1](https://user-images.githubusercontent.com/109758200/184705912-d104a093-d1d4-419a-8f5a-77e9bc97faaf.png)
 
 ![improve_perf_ex2_s4_2](https://user-images.githubusercontent.com/109758200/184705930-4cb0ce72-03c8-43c5-bdef-da2cd59c0995.png)
 
-To export the trained model, I ran the code below:
+To export the trained model, I ran the code below and saved in in `experiments/reference/exported/saved_model`:
 ```
 python experiments/exporter_main_v2.py --input_type image_tensor --pipeline_config_path experiments/reference/pipeline_new.config --trained_checkpoint_dir experiments/experiment2/ --output_directory experiments/reference/exported/
 
+```
+
+Below is the created video of my model's inferences:
+```
+python inference_video.py --labelmap_path label_map.pbtxt --model_path experiments/reference/exported/saved_model --tf_record_path data/test/segment-12200383401366682847_2552_140_2572_140_with_camera_labels.tfrecord --config_path experiments/reference/pipeline_new.config --output_path animation.gif
 ```
 
 
