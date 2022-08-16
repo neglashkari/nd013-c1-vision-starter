@@ -129,7 +129,7 @@ Modify the arguments of the following function to adjust it to your models:
 
 ```
 python experiments/exporter_main_v2.py --input_type image_tensor --pipeline_config_path experiments/reference/pipeline_new.config --trained_checkpoint_dir experiments/reference/ --output_directory experiments/reference/exported/
-```
+
 
 This should create a new folder `experiments/reference/exported/saved_model`. You can read more about the Tensorflow SavedModel format [here](https://www.tensorflow.org/guide/saved_model).
 
@@ -137,7 +137,6 @@ Finally, you can create a video of your model's inferences for any tf record fil
 ```
 python inference_video.py --labelmap_path label_map.pbtxt --model_path experiments/reference/exported/saved_model --tf_record_path /data/waymo/testing/segment-12200383401366682847_2552_140_2572_140_with_camera_labels.tfrecord --config_path experiments/reference/pipeline_new.config --output_path animation.gif
 ```
-
 ## Submission Template
 
 ### Project overview
