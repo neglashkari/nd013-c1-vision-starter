@@ -32,8 +32,8 @@ This section should highlight the different strategies you adopted to improve yo
 
 To improve the perfomances, first I improved the data augmentation strategy.
 Below is the results obtained from running `ExploreAugmentations_Negin.ipynb` notebook:
-![data_exploratoryaugmentaion_analysis 0 ](https://user-images.githubusercontent.com/109758200/184712252-e488ea70-effd-44a8-a9d5-d7223e71302a.png)
-![data_exploratoryaugmentaion_analysis 1 ](https://user-images.githubusercontent.com/109758200/184712274-af3eab35-d73a-4481-ae4b-0ce31a6761a7.png)
+![data_exploratoryaugmentaion_analysis 0 ](https://user-images.githubusercontent.com/109758200/184972516-b8044925-9d9a-48a1-89e9-6f5fbf6fa8bc.png)
+![data_exploratoryaugmentaion_analysis 1 ](https://user-images.githubusercontent.com/109758200/184972546-970c99ce-6fef-4bc8-b34d-426f07e237c0.png)
 ![data_exploratoryaugmentaion_analysis 2 ](https://user-images.githubusercontent.com/109758200/184972014-19cbcb91-ffa4-4694-9efa-9a6918e7a410.png)
 ![data_exploratoryaugmentaion_analysis 3 ](https://user-images.githubusercontent.com/109758200/184972033-e473d5fc-a3f0-4025-b9a0-95950a00b9a3.png)
 
@@ -72,7 +72,10 @@ optimizer {
 	    }
 ```
 
-Training logs obtained from Temsorboard are shown below:
+Training logs obtained from Tensorboard are shown below which are obtained by running this code:
+```
+ $python experiments/model_main_tf2.py --model_dir=experiments/experiment1/ --pipeline_config_path=experiments/experiment1/pipeline_new.config
+```
 
 ![improve_perf_ex1_s4_1](https://user-images.githubusercontent.com/109758200/184705983-339a62c9-5545-495c-9360-517a4948ea3c.png)
 
@@ -86,11 +89,17 @@ data_augmentation_options {
     }
 ```
 
-Training logs obtained from Tensorboard are shown below:
+Training logs obtained from Tensorboard are shown below which are obtaned by running this code:
+```$python experiments/model_main_tf2.py --model_dir=experiments/experiment2/ --pipeline_config_path=experiments/experiment2/pipeline_new.config```
 
 ![improve_perf_ex2_s4_1](https://user-images.githubusercontent.com/109758200/184705912-d104a093-d1d4-419a-8f5a-77e9bc97faaf.png)
 
 ![improve_perf_ex2_s4_2](https://user-images.githubusercontent.com/109758200/184705930-4cb0ce72-03c8-43c5-bdef-da2cd59c0995.png)
 
+To export the trained model, I ran the code below:
+```
+python experiments/exporter_main_v2.py --input_type image_tensor --pipeline_config_path experiments/reference/pipeline_new.config --trained_checkpoint_dir experiments/experiment2/ --output_directory experiments/reference/exported/
+
+```
 
 
