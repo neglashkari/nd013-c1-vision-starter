@@ -15,20 +15,30 @@ To run jupyer note books, please run `ExploratoryDataAnalysis.ipynb` and `Explor
 
 ### Dataset
 #### Dataset analysis
-This section should contain a quantitative and qualitative description of the dataset. It should include images, charts and other visualizations.
-
 First, we implement the `display_images` function in the `Exploratory Data Analysis` notebook. The results are shown below:
 ![data_exploratory_analysis](https://user-images.githubusercontent.com/109758200/184712542-55baf11e-96da-4aa6-ac1c-7947d31ebccc.png)
 
 #### Cross validation
-This section should detail the cross validation strategy and justify your approach.
 
 ### Training
 #### Reference experiment
-This section should detail the results of the reference experiment. It should includes training metrics and a detailed explanation of the algorithm's performances.
+For reference experiment, `SSD Resnet50 640x640` model is used and pre-trained weights are used to train the model. Also, the configuration file used in this section is `pipeline.config`.
+
+Training process for reference experiment is shown below using tensorboard:
+![data_training_s3_1](https://user-images.githubusercontent.com/109758200/184995200-addb597f-1227-45c9-8128-dbccf4f0eb26.png)
+![data_training_s3_2](https://user-images.githubusercontent.com/109758200/184995208-26debd5f-608a-4504-9482-1c0d84bae887.png)
+![data_training_s3_3](https://user-images.githubusercontent.com/109758200/184995216-c8921ced-a829-4170-9aab-9b6ec235e2ed.png)
+
+
+Moreover, evaluation for reference experiment is shown below:
+![evaluation_s3_1](https://user-images.githubusercontent.com/109758200/184995139-6c41b19e-4682-49e6-800b-b736df3b206d.png)
+![evaluation_s3_2](https://user-images.githubusercontent.com/109758200/184995159-7b81fc6b-3dcb-492b-b8d3-c15eb9c57b05.png)
+![evaluation_s3_3](https://user-images.githubusercontent.com/109758200/184995176-74a420e2-4420-41d0-924d-1d9a9e131645.png)
+![evaluation_s3_4](https://user-images.githubusercontent.com/109758200/184995187-53686cd4-5c2a-4919-bf40-b1dd1ce87599.png)
+
+In the next section, the perofmane of model will be enhanced.
 
 #### Improve on the reference
-This section should highlight the different strategies you adopted to improve your model. It should contain relevant figures and details of your findings.
 
 To improve the perfomances, first I improved the data augmentation strategy.
 Below is the results obtained from running `ExploreAugmentations_Negin.ipynb` notebook:
@@ -93,7 +103,9 @@ data_augmentation_options {
 ```
 
 To train the model, I ran the code below:
-```$python experiments/model_main_tf2.py --model_dir=experiments/experiment2/ --pipeline_config_path=experiments/experiment2/pipeline_new.config```
+```
+$python experiments/model_main_tf2.py --model_dir=experiments/experiment2/ --pipeline_config_path=experiments/experiment2/pipeline_new.config
+```
 
 Also, training logs obtained from Tensorboard are shown below:
 ```
@@ -106,12 +118,9 @@ python -m tensorboard.main --logdir experiments/experiment2/
 To export the trained model, I ran the code below and saved in in `experiments/reference/exported/saved_model`:
 ```
 python experiments/exporter_main_v2.py --input_type image_tensor --pipeline_config_path experiments/reference/pipeline_new.config --trained_checkpoint_dir experiments/experiment2/ --output_directory experiments/reference/exported/
-
 ```
 
-Below is the created video of my model's inferences:
-```
-python inference_video.py --labelmap_path label_map.pbtxt --model_path experiments/reference/exported/saved_model --tf_record_path data/test/segment-12200383401366682847_2552_140_2572_140_with_camera_labels.tfrecord --config_path experiments/reference/pipeline_new.config --output_path animation.gif
-```
+Below is the created video of my model's inferences
+![animation](https://user-images.githubusercontent.com/109758200/184994439-40c3dfe6-a1c7-4d8c-9f57-34efa1f178bf.gif)
 
 
