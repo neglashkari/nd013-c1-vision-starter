@@ -36,7 +36,7 @@ Moreover, evaluation for reference experiment is shown below:
 ![evaluation_s3_3](https://user-images.githubusercontent.com/109758200/184995176-74a420e2-4420-41d0-924d-1d9a9e131645.png)
 ![evaluation_s3_4](https://user-images.githubusercontent.com/109758200/184995187-53686cd4-5c2a-4919-bf40-b1dd1ce87599.png)
 
-In the next section, the perofmane of model will be enhanced.
+From the results shown above, losses have decrease with the number of epochs; however, classification loss has reached a base plateau and the final overall loss is about 12. In the next section, the perofmane of model will be enhanced as the reference ran with the pretrained model did not show optimal performance.
 
 #### Improve on the reference
 
@@ -93,6 +93,9 @@ Training logs obtained from Tensorboard are shown below which are obtained by ru
 ![improve_perf_ex1_s4_1](https://user-images.githubusercontent.com/109758200/184705983-339a62c9-5545-495c-9360-517a4948ea3c.png)
 
 ![improve_perf_ex1_s4_2](https://user-images.githubusercontent.com/109758200/184705993-f6a22cdb-9e09-4088-9d2f-ead1629609f9.png)
+
+In the experiment 1 training, the classification loss has reduced to 0.2 from the reference which was 0.8, and the final overall loss is reduced significantly (i.e., 0.65). Unlike the reference, the plateau has reached later than the reference which means the model kept improving until later runs.
+Overall, its obvious from the training resuls shown above that the model has improved a lot. In both the reference and the experiment 1, the model has ran for 2.5k epochs which is until the learning rate decays to zero.
 
 **Experiment 2:** convert image to grey scale (randomly) and using exponential_decay_learning_rate
 ```
