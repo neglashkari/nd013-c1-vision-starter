@@ -18,6 +18,11 @@ To run jupyer note books, please run `ExploratoryDataAnalysis.ipynb` and `Explor
 First, we implement the `display_images` function in the `Exploratory Data Analysis` notebook. The results are shown below:
 ![data_exploratory_analysis](https://user-images.githubusercontent.com/109758200/184712542-55baf11e-96da-4aa6-ac1c-7947d31ebccc.png)
 
+To understand the dataset better, I computed class (vehicle, pedestrian, cycles) distribution as well as Mean pixel value distibution of 1000 data (refer to `ExploratoryDataAnalysis.ipynb` for codes). Results are provided below:
+![class_distr](https://user-images.githubusercontent.com/109758200/185286292-8a14eb41-0791-43fe-afd2-a1b01c4901b4.PNG)
+![pixl_distr](https://user-images.githubusercontent.com/109758200/185286300-f50078e3-4826-4fa4-b8a0-450f92ec3b27.PNG)
+
+
 #### Cross validation
 
 ### Training
@@ -94,8 +99,8 @@ Training logs obtained from Tensorboard are shown below which are obtained by ru
 
 ![improve_perf_ex1_s4_2](https://user-images.githubusercontent.com/109758200/184705993-f6a22cdb-9e09-4088-9d2f-ead1629609f9.png)
 
-In the experiment 1 training, the classification loss has reduced to 0.2 from the reference which was 0.8, and the final overall loss is reduced significantly (i.e., 0.65). Unlike the reference, the plateau has reached later than the reference which means the model kept improving until later runs.
-Overall, its obvious from the training resuls shown above that the model has improved a lot. In both the reference and the experiment 1, the model has ran for 2.5k epochs which is until the learning rate decays to zero.
+Analysis: In the experiment 1 training, the classification loss has reduced to 0.2 from the reference which was 0.8, and the final overall loss is reduced significantly (i.e., 0.65). Unlike the reference, the plateau has reached later than the reference which means the model kept improving until later runs.
+Overall, its obvious from the training results shown above that the model has improved a lot. In both the reference and the experiment 1, the model has ran for 2.5k epochs which is until the learning rate decays to zero.
 
 **Experiment 2:** convert image to grey scale (randomly) and using exponential_decay_learning_rate
 ```
@@ -117,6 +122,10 @@ python -m tensorboard.main --logdir experiments/experiment2/
 ![improve_perf_ex2_s4_1](https://user-images.githubusercontent.com/109758200/184705912-d104a093-d1d4-419a-8f5a-77e9bc97faaf.png)
 
 ![improve_perf_ex2_s4_2](https://user-images.githubusercontent.com/109758200/184705930-4cb0ce72-03c8-43c5-bdef-da2cd59c0995.png)
+
+Analysis: The experiment 1 and 2 are showing almost similar performance. The total loss in experiment 2 is around 0.7 versus experimant 1 which was around 0.65, showing experiment 1 actually yield a little better perfromance on the losses in training compared to experiment 2. This shows converting images to gray-scale and use them for training will deteriorate performance, as expected.
+
+
 
 To export the trained model, I ran the code below and saved in in `experiments/reference/exported/saved_model`:
 ```
